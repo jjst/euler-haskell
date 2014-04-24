@@ -42,3 +42,9 @@ highestOccurrences xs = map (maximumBy (compare `on` length)) . groupBy ((==) `o
 
 answer5 = product . concat . highestOccurrences . allPrimeFactors $ [2..20]
     where allPrimeFactors xs = concatMap group $ map primeFactors xs
+
+squareOfSums xs = (sum xs)^2
+sumOfSquares = sum . map (^2)
+
+answer6 = delta [1..100]
+    where delta xs = squareOfSums xs - sumOfSquares xs
