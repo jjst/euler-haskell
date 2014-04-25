@@ -36,6 +36,13 @@ primeFactors n | n > 1 = go n primes
 
 answer3 = maximum . primeFactors $ 600851475143
 
+isPalindrome :: (Show a) => a -> Bool
+isPalindrome x = str == reverse str
+    where str = show x
+
+answer4 = maximum . filter isPalindrome $ [x*x' | x <- xs, x' <- xs]
+    where xs = [100..999]
+
 highestOccurrences :: [[Int]] -> [[Int]]
 highestOccurrences xs = map (maximumBy (compare `on` length)) . groupBy ((==) `on` head) . sortBy (compare `on` head) $ xs
 
@@ -48,3 +55,4 @@ sumOfSquares = sum . map (^2)
 
 answer6 = delta [1..100]
     where delta xs = squareOfSums xs - sumOfSquares xs
+
