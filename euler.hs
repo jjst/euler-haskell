@@ -56,3 +56,5 @@ sumOfSquares = sum . map (^2)
 answer6 = delta [1..100]
     where delta xs = squareOfSums xs - sumOfSquares xs
 
+answer7 = primes !! 10000
+
