@@ -93,3 +93,5 @@ listsOfLength len xs = takeWhile (\xs -> length xs == len) . map (take len) . ta
 
 answer8 = maximum . map product $ listsOfLength 5 . digits $ number
     where number = read (concat . lines $ multiline) :: Integer
+
+answer9 = product . head $ [ [a,b,c] | b <- [1..], a <- [1..b-1], let s = 1000, let c = (s - a - b), a^2 + b^2 == c^2 ]
