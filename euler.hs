@@ -89,9 +89,7 @@ digits :: Integer -> [Int]
 digits = map digitToInt . show
 
 listsOfLength :: Int -> [Int] -> [[Int]]
-listsOfLength len xs
-    | length xs < len = []
-    | otherwise       = take len xs : listsOfLength len (tail xs)
+listsOfLength len xs = takeWhile (\xs -> length xs == len) . map (take len) . tails $ xs
 
 answer8 = maximum . map product $ listsOfLength 5 . digits $ number
     where number = read (concat . lines $ multiline) :: Integer
