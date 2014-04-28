@@ -18,6 +18,7 @@ minus l1@(x:xs) l2@(y:ys)
     | x < y = x : minus xs l2
     | otherwise = minus xs l2
 
+primes :: (Integral a) => [a]
 primes = 2 : primes'
   where
     primes' = sieve [3,5..] 9 primes'
@@ -30,6 +31,7 @@ primesT = sieve [2..]
   where
     sieve (p:xs) = p : sieve [x | x <- xs, rem x p /= 0]
 
+primeFactors :: (Integral a) => a -> [a]
 primeFactors n | n > 1 = go n primes
    where
      go n ps@(p:ps')
