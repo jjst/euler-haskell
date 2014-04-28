@@ -3,6 +3,7 @@ import Text.RawString.QQ
 import Data.List
 import Data.Function
 import Data.Char
+import Data.Maybe
 
 answer1 = sum $ filter (\x -> x `mod` 5 == 0 || x `mod` 3 == 0) [1..999]
 
@@ -156,3 +157,14 @@ allDiagonals m = diags m ++ diags (map reverse m)
 
 answer11 = maximum . map product $ all4InRows
     where all4InRows = concatMap (listsOfLength 4) $ grid ++ transpose grid ++ allDiagonals grid
+
+triangleNumbers = 1 : zipWith (+) triangleNumbers [2..]
+
+divisors' :: (Integral a) =>  a -> [a]
+divisors' x = reverse $ x : foldl (\acc d -> if x `mod` d == 0 then d : acc else acc) [] [1..(x `div` 2)]
+
+numberOfDivisors :: (Integral a) => a -> Int
+numberOfDivisors 1 = 1
+numberOfDivisors x = product . map (\xs -> length xs + 1) . group . primeFactors $ x
+
+answer12 = fromJust . find (\x -> numberOfDivisors x > 500) $ triangleNumbers
