@@ -277,3 +277,11 @@ problem13Input = [r|
 
 answer13 = unDigits . take 10 . digits . sum $ numbers
     where numbers = map read . lines . strip $ problem13Input :: [Integer]
+
+collatzSequence :: Integer -> [Integer]
+collatzSequence 1 = [1]
+collatzSequence n
+    | even n    = n : collatzSequence (n `div` 2)
+    | otherwise = n : collatzSequence (3*n + 1)
+
+answer14 = maximumBy (compare `on` (length . collatzSequence)) [1..1000000]
