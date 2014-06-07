@@ -4,6 +4,7 @@ import Data.List
 import Data.Function
 import Data.Char
 import Data.Maybe
+import Data.Array
 
 answer1 = sum $ filter (\x -> x `mod` 5 == 0 || x `mod` 3 == 0) [1..999]
 
@@ -285,3 +286,10 @@ collatzSequence n
     | otherwise = n : collatzSequence (3*n + 1)
 
 answer14 = maximumBy (compare `on` (length . collatzSequence)) [1..1000000]
+
+nbLatticePaths :: Integer -> Integer
+nbLatticePaths gridSize = binomialCoeffs ! (x,x)
+    where binomialCoeffs =  array ((1,1),(x,x)) [ ((i,j), if (i == 1 || j == 1) then 1 else binomialCoeffs!(i-1,j) + binomialCoeffs!(i,j-1) ) | i <- [1..x], j <- [1..x]]
+          x = gridSize + 1
+
+answer15 = nbLatticePaths 20
