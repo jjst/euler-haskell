@@ -293,3 +293,5 @@ nbLatticePaths gridSize = binomialCoeffs ! (x,x)
           x = gridSize + 1
 
 answer15 = nbLatticePaths 20
+
+answer16 = sum . digits $ 2^1000
